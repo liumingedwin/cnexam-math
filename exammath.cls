@@ -1,7 +1,6 @@
-\ProvidesClass{exammath}[2007/10/19]
-
-\LoadClass{ctexart}
-
+\ProvidesClass{exammath}[2025/01/25]
+\LoadClass{article}
+\RequirePackage{ctex}
 \RequirePackage{cnmath}
 
 %----------------------------------------------------
@@ -17,16 +16,16 @@
 % ---------------------------------------------------
 \newcounter{problemCounter}                         % 计数器本体
 \newcommand*{\internalIncreaseCounter} {     % 增加计数
-    \addtocounter{problemCounter}{1}
-    \ifthenelse{\theproblemCounter<10}{}{\extendindentatten} %到10时增加缩进量
-
+	\addtocounter{problemCounter}{1}
+	\ifthenelse{\theproblemCounter<10}{}{\extendindentatten} %到10时增加缩进量
+	
 }
 \newcommand*{\internalProblemPreparation} {  % 题目准备操作
-    \internalIncreaseCounter
+	\internalIncreaseCounter
 }
 \newcommand*{\problemNumber} {                  % 引用题号
-    \internalProblemPreparation
-    \theproblemCounter.
+	\internalProblemPreparation
+	\theproblemCounter.
 }
 % ---------------------------------------------------
 % 大题（题组）标注
@@ -34,10 +33,10 @@
 % 使用方法：
 % \section{大题序号}{大题名称}{说明文字}
 \renewcommand{\section}[3]{
-    \par
-    \hangafter 1
-    \hangindent 2em
-    \noindent \textbf{#1、#2：#3}
+	\par
+	\hangafter 1
+	\hangindent 2em
+	\noindent \textbf{#1、#2：#3}
 }
 % ---------------------------------------------------
 % 解答题标记
@@ -47,13 +46,13 @@
 % 使用方法：
 % \problem[说明文字（如“选修4-4 极坐标与参数方程”），可留空]{该题分数}
 \newcommand{\problem}[2][]{
-    \ifthenelse{\isempty{#1}}%
-    {\def \tempProblemCommentNote{}
-    }% if #1 is empty
-    {\def \tempProblemCommentNote{[#1]}}% if #1 is not empty
-    \par
-    \problemNumber \tempProblemCommentNote (#2 分) 
-    \par 
+	\ifthenelse{\isempty{#1}}%
+	{\def \tempProblemCommentNote{}
+	}% if #1 is empty
+	{\def \tempProblemCommentNote{[#1]}}% if #1 is not empty
+	\par
+	\problemNumber \tempProblemCommentNote (#2 分) 
+	\par 
 }
 
 % 小问
@@ -70,9 +69,9 @@
 % 小题标记
 % ---------------------------------------------------
 \newcommand{\simpleproblem}{
-    \problemNumber
-    \hangafter 1
-    \hangindent \indentNumber
+	\problemNumber
+	\hangafter 1
+	\hangindent \indentNumber
 }
 
 % ---------------------------------------------------
@@ -83,26 +82,26 @@
 
 
 \settasks{
-    counter-format={tsk[A].},
-    label-offset={0.4em},
-    label-align=left,
-    column-sep={2pt},
-    item-indent={4.7em},
-    before-skip={-0.5em},
-    after-item-skip={-1ex plus 1ex minus 1ex}
-    %after-skip={1em}
+	label=\Alph*.,
+	label-offset={0.4em},
+	label-align=left,
+	column-sep={2pt},
+	item-indent={4.7em},
+	before-skip={-0.5em},
+	after-item-skip={-1ex plus 1ex minus 1ex}
+	%after-skip={1em}
 }
 
 % 使用方法：
 % \selections{选项A}{选项B}{选项C}{选项D}
 \newcommand*{\selections}[4]{
-    \vspace{-1ex}
-    \begin{tasks}(4)
-        \task #1
-        \task #2
-        \task #3
-        \task #4
-    \end{tasks}
+	\vspace{-1ex}
+	\begin{tasks}(4)
+		\task #1
+		\task #2
+		\task #3
+		\task #4
+	\end{tasks}
 }
 
 % ---------------------------------------------------
@@ -141,36 +140,36 @@
 
 \newcommand{\additioninfo}[1]{\def \savedCautionInfoAddition{#1}}
 \newcommand{\usebasicinfo}{
-    \def \savedCautionInfo{
-        \textbf{注意事项}：
-        \par 1.答卷前，考生务必把自己的姓名、考生号写等填写在答题卡和试卷指定位置上。
-        \par 2.回答选择题时，选出每小题答案后，用铅笔把答题卡上对应题目的答案标号涂黑。如需改动，用橡皮擦干净后，再选涂其它答案标号。回答非选择题时，将答案写在答题卡上。写在本试卷上无效。
-        \par 3.考试结束后，将本试卷和答题卡一并交回。
-        \savedCautionInfoAddition
-        \vspace{3ex}
-    }
+	\def \savedCautionInfo{
+		\textbf{注意事项}：
+		\par 1.答卷前，考生务必把自己的姓名、考生号写等填写在答题卡和试卷指定位置上。
+		\par 2.回答选择题时，选出每小题答案后，用铅笔把答题卡上对应题目的答案标号涂黑。如需改动，用橡皮擦干净后，再选涂其它答案标号。回答非选择题时，将答案写在答题卡上。写在本试卷上无效。
+		\par 3.考试结束后，将本试卷和答题卡一并交回。
+		\savedCautionInfoAddition
+		\vspace{3ex}
+	}
 }
 \newcommand{\useadditioninfoonly}{
-    \def \savedCautionInfo{
-        \textbf{注意事项}：
-        \par \savedCautionInfoAddition
-        \vspace{3ex}
-    }
+	\def \savedCautionInfo{
+		\textbf{注意事项}：
+		\par \savedCautionInfoAddition
+		\vspace{3ex}
+	}
 }
 
 \renewcommand*{\maketitle}{
-    \noindent \savedSecretText 
-    \begin{center}
-        \begin{Large}
-            \savedleadingtext
-        \end{Large}
-        \\
-        \vspace{3ex}
-        \begin{LARGE}
-            \textbf{\savedTitle}
-        \end{LARGE}
-    \end{center}
-    \savedCautionInfo
+	\noindent \savedSecretText 
+	\begin{center}
+		\begin{Large}
+			\savedleadingtext
+		\end{Large}
+		\\
+		\vspace{3ex}
+		\begin{LARGE}
+			\textbf{\savedTitle}
+		\end{LARGE}
+	\end{center}
+	\savedCautionInfo
 }
 
 
